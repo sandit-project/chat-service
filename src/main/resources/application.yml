@@ -1,0 +1,25 @@
+server:
+ port: 9009
+
+spring:
+ data:
+  mongodb:
+   uri: mongodb://localhost:27017/chatapp
+  redis:
+   port: 6379
+   host: localhost
+ jackson:
+  serialization:
+   write-dates-as-timestamps: false
+
+logging:
+ level:
+  org.springframework.web: DEBUG
+  org.springframework.messaging: DEBUG
+
+# STOMP ??? ??? ?? ?? (??)
+management:
+ endpoints:
+  web:
+   exposure:
+    include: "*"

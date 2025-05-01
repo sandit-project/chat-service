@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>채팅방 목록</title>
+    <link rel="stylesheet" href="chat-rooms.css"> <!-- CSS 파일 연결 -->
+</head>
+<body>
+<h2>채팅방 목록</h2>
+
+<div>
+    <input type="text" id="roomName" placeholder="채팅방 이름 입력">
+    <button onclick="createRoom()">방 만들기</button>
+</div>
+
+<hr>
+
+<div id="roomList">
+    <!-- 방 목록이 여기에 표시됩니다 -->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="chat-rooms.js"></script> <!-- JavaScript 파일 연결 -->
+</body>
+</html>
