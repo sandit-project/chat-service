@@ -58,3 +58,24 @@ h2 {
 #sendBtn:hover {
     background-color: #a0522d;
 }
+#chatBox {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.my-message {
+    align-self: flex-end;
+    background-color: #d1e7dd;
+    padding: 5px 10px;
+    border-radius: 10px;
+    max-width: 60%;
+}
+
+.other-message {
+    align-self: flex-start;
+    background-color: #f8d7da;
+    padding: 5px 10px;
+    border-radius: 10px;
+    max-width: 60%;
+}
