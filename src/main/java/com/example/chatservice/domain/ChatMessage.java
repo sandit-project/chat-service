@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Document("chat_messages")
 @Data
@@ -19,4 +20,7 @@ public class ChatMessage {
     private String sender;
     private String message;
     private LocalDateTime timestamp;
+    private Date createdAt = new Date();
+
+
 }

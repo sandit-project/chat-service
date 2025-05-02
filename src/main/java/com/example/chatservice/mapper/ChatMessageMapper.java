@@ -5,6 +5,8 @@ import com.example.chatservice.dto.ChatMessageRequest;
 import com.example.chatservice.dto.ChatMessageResponse;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,12 +32,15 @@ public class ChatMessageMapper {
 
     // ChatMessageRequest → ChatMessage 엔티티 변환
     public static ChatMessage toEntity(ChatMessageRequest request) {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Date createdAt = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
         return new ChatMessage(
                 null, // ID는 MongoDB에서 자동 생성
                 request.getRoomId(),
                 request.getSender(),
                 request.getMessage(),
-                LocalDateTime.now() // 현재 시간으로 타임스탬프 설정
+                LocalDateTime.now(), // 현재 시간으로 타임스탬프 설정
+                createdAt
         );
     }
 }
