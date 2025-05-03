@@ -2,6 +2,7 @@ package com.example.chatservice.redis;
 
 
 import com.example.chatservice.domain.ChatMessage;
+import com.example.chatservice.repository.ChatMessageRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.connection.Message;
@@ -15,6 +16,7 @@ public class RedisSubscriber implements MessageListener {
 
     private final SimpMessagingTemplate messagingTemplate;
     private final ObjectMapper objectMapper;
+    private final ChatMessageRepository chatMessageRepository;
 
 
     @Override
@@ -22,6 +24,7 @@ public class RedisSubscriber implements MessageListener {
         try {
             String body = new String(message.getBody());
             ChatMessage chatMessage = objectMapper.readValue(body, ChatMessage.class);
+            chatMessageRepository.save(chatMessage);
             messagingTemplate.convertAndSend("/topic/" + chatMessage.getRoomId(), chatMessage);
         } catch (Exception e) {
             e.printStackTrace();
