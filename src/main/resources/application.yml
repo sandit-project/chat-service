@@ -25,3 +25,7 @@ management:
   web:
    exposure:
     include: "*"
+
+jwt:
+ issuer: dlstlr1707@gmail.com
+ secret_key: 55DQ7XtZjKEuftetbQMtw0geU9SS1rR/fbrPOAqIQ2UUPJ+crjXRoLppDtreyvim53v3U6+hTLcbunHlxlNGlA==

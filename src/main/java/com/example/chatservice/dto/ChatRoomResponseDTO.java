@@ -9,10 +9,8 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChatMessageResponse {
+public class ChatRoomResponseDTO {
     private String id;
-    private String roomId;
-    private String sender;
-    private String message;
-    private LocalDateTime timestamp;
+    private String name;
+    private LocalDateTime createdAt;
 }

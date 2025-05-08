@@ -1,8 +1,8 @@
 package com.example.chatservice.mapper;
 
 import com.example.chatservice.domain.ChatMessage;
-import com.example.chatservice.dto.ChatMessageRequest;
-import com.example.chatservice.dto.ChatMessageResponse;
+import com.example.chatservice.dto.ChatMessageRequestDTO;
+import com.example.chatservice.dto.ChatMessageResponseDTO;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 public class ChatMessageMapper {
 
     // ChatMessage 엔티티 → ChatMessageResponse 변환
-    public static ChatMessageResponse toResponse(ChatMessage message) {
-        return new ChatMessageResponse(
+    public static ChatMessageResponseDTO toResponse(ChatMessage message) {
+        return new ChatMessageResponseDTO(
                 message.getId(),
                 message.getRoomId(),
                 message.getSender(),
@@ -24,14 +24,14 @@ public class ChatMessageMapper {
     }
 
     // ChatMessage 엔티티 리스트 → ChatMessageResponse 리스트 변환
-    public static List<ChatMessageResponse> toResponseList(List<ChatMessage> messages) {
+    public static List<ChatMessageResponseDTO> toResponseList(List<ChatMessage> messages) {
         return messages.stream()
                 .map(ChatMessageMapper::toResponse)
                 .collect(Collectors.toList());
     }
 
     // ChatMessageRequest → ChatMessage 엔티티 변환
-    public static ChatMessage toEntity(ChatMessageRequest request) {
+    public static ChatMessage toEntity(ChatMessageRequestDTO request) {
         LocalDateTime localDateTime = LocalDateTime.now();
         Date createdAt = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
         return new ChatMessage(
