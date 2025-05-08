@@ -1,8 +1,8 @@
 package com.example.chatservice.mapper;
 
 import com.example.chatservice.domain.ChatRoom;
-import com.example.chatservice.dto.ChatRoomRequest;
-import com.example.chatservice.dto.ChatRoomResponse;
+import com.example.chatservice.dto.ChatRoomRequestDTO;
+import com.example.chatservice.dto.ChatRoomResponseDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 public class ChatRoomMapper {
 
     // ChatRoom 엔티티 → ChatRoomResponse 변환
-    public static ChatRoomResponse toResponse(ChatRoom room) {
-        return new ChatRoomResponse(
+    public static ChatRoomResponseDTO toResponse(ChatRoom room) {
+        return new ChatRoomResponseDTO(
                 room.getId(),
                 room.getName(),
                 room.getCreatedAt()
@@ -19,14 +19,14 @@ public class ChatRoomMapper {
     }
 
     // ChatRoom 엔티티 리스트 → ChatRoomResponse 리스트 변환
-    public static List<ChatRoomResponse> toResponseList(List<ChatRoom> rooms) {
+    public static List<ChatRoomResponseDTO> toResponseList(List<ChatRoom> rooms) {
         return rooms.stream()
                 .map(ChatRoomMapper::toResponse)
                 .collect(Collectors.toList());
     }
 
     // ChatRoomRequest → ChatRoom 엔티티 변환
-    public static ChatRoom toEntity(ChatRoomRequest request) {
+    public static ChatRoom toEntity(ChatRoomRequestDTO request) {
         return new ChatRoom(
                 null, // ID는 MongoDB에서 자동 생성
                 request.getName(),
