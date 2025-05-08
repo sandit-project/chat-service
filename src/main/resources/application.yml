@@ -1,13 +1,15 @@
 server:
- port: 9009
+ port: 9006
 
 spring:
  data:
   mongodb:
    uri: mongodb://localhost:27017/chatapp
   redis:
-   port: 6379
-   host: localhost
+   port: ${REDIS_PORT:6379}
+   host: ${REDIS_URL:localhost}
+   password: ${REDIS_PASSWORD:1234}
+   username: ${REDIS_USER:root}
  jackson:
   serialization:
    write-dates-as-timestamps: false
