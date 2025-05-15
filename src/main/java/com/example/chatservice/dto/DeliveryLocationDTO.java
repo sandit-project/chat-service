@@ -6,6 +6,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class DeliveryLocationDTO {
+    private String merchantUid;
     private Integer riderUserUid;
     private Integer riderSocialUid;
     private double lat;
