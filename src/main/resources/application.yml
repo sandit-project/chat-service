@@ -4,7 +4,7 @@ server:
 spring:
  data:
   mongodb:
-   uri: mongodb://localhost:27017/chatapp
+   uri: ${MONGO_URL:mongodb://localhost:27017/chatapp}
   redis:
    port: ${REDIS_PORT:6379}
    host: ${REDIS_URL:localhost}
