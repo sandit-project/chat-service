@@ -1,7 +1,7 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.4.5'
-    id 'io.spring.dependency-management' version '1.1.7'
+    id 'org.springframework.boot' version '3.2.5' // ✅ 호환 버전
+    id 'io.spring.dependency-management' version '1.1.4'
 }
 
 group = 'com.example'
@@ -13,10 +13,8 @@ java {
     }
 }
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
+ext {
+    set('springCloudVersion', "2023.0.1") // ✅ Spring Cloud 2023 버전
 }
 
 repositories {
@@ -24,36 +22,46 @@ repositories {
 }
 
 dependencies {
-
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // 🌐 Web 관련
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // 🧵 WebSocket (STOMP)
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
-    compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-    implementation 'org.springframework.boot:spring-boot-starter'
-
     implementation 'org.springframework:spring-messaging'
 
+    // ☁️ Spring Cloud - Feign Client
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
 
+    // 🧰 기타 유틸
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
 
+    // 🧠 DB - Redis / MongoDB
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 
-
+    // 🌐 WebSocket Front 라이브러리 (Webjars)
     implementation 'org.webjars:webjars-locator-core'
     implementation 'org.webjars:sockjs-client:1.5.1'
     implementation 'org.webjars:stomp-websocket:2.3.4'
 
-    // JSON 직렬화용
-    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    // 🛠️ 개발용
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
+    // ✨ Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 
+    // ✅ 테스트
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
 
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 
 tasks.named('test') {
