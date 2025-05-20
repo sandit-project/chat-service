@@ -21,7 +21,7 @@ public class ChatRoomController {
     // 채팅방 생성 API
     @PostMapping("/rooms")
     public ChatRoomResponseDTO createRoom(@RequestBody ChatRoomRequestDTO request) {
-        return chatRoomService.createRoom(request.getName());
+        return chatRoomService.createRoom(request.getName(),request.getOwnerId());
     }
 
     // 채팅방 목록 조회 API
@@ -34,5 +34,11 @@ public class ChatRoomController {
     @GetMapping("/rooms/{roomId}/messages")
     public List<ChatMessageResponseDTO> getMessages(@PathVariable String roomId) {
         return chatMessageService.getMessagesByRoomId(roomId);
+    }
+
+    // 채팅방 삭제 API 추가
+    @DeleteMapping("/rooms/{roomId}")
+    public void deleteRoom(@PathVariable String roomId) {
+        chatRoomService.deleteRoom(roomId);
     }
 }
