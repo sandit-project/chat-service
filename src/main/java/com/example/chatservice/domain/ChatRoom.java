@@ -16,6 +16,8 @@ public class ChatRoom {
     @Id
     private String id;
     private String name;
+
     private LocalDateTime createdAt;
+    private String ownerId;  // 방 생성자 회원 ID 추가
 }
 
