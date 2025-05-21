@@ -14,7 +14,8 @@ public class ChatRoomMapper {
         return new ChatRoomResponseDTO(
                 room.getId(),
                 room.getName(),
-                room.getCreatedAt()
+                room.getCreatedAt(),
+                room.getOwnerId()
         );
     }
 
@@ -25,12 +26,15 @@ public class ChatRoomMapper {
                 .collect(Collectors.toList());
     }
 
-    // ChatRoomRequest → ChatRoom 엔티티 변환
-    public static ChatRoom toEntity(ChatRoomRequestDTO request) {
-        return new ChatRoom(
-                null, // ID는 MongoDB에서 자동 생성
-                request.getName(),
-                null // 생성 시간은 컨트롤러에서 현재 시간으로 설정할 수 있음
-        );
-    }
+//    // ChatRoomRequest → ChatRoom 엔티티 변환
+//    public static ChatRoom toEntity(ChatRoomRequestDTO request) {
+//        return new ChatRoom(
+//                null, // ID는 MongoDB에서 자동 생성
+//                request.getName(),
+//                null // 생성 시간은 컨트롤러에서 현재 시간으로 설정할 수 있음
+//        );
+//    }
+
+
+
 }

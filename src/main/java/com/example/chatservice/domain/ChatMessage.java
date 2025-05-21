@@ -1,8 +1,6 @@
 package com.example.chatservice.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,14 +11,23 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class ChatMessage {
     @Id
     private String id;
+
     private String roomId;
     private String sender;
+
+    // 역할(예: ADMIN, USER 등)
+    private String senderRole;
+
+    // 타입(예: social, 일반 등)
+    private String senderType;
+
     private String message;
-    private LocalDateTime timestamp;
+
+
+    @Builder.Default
     private Date createdAt = new Date();
-
-
 }
