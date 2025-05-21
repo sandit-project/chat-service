@@ -17,7 +17,7 @@ public class ChatMessageService {
 
     // 채팅방 내 메시지 조회
     public List<ChatMessageResponseDTO> getMessagesByRoomId(String roomId) {
-        List<ChatMessage> messages = chatMessageRepository.findByRoomIdOrderByTimestampAsc(roomId);
+        List<ChatMessage> messages = chatMessageRepository.findByRoomIdOrderByCreatedAtAsc(roomId);
         return ChatMessageMapper.toResponseList(messages);
     }
 }
