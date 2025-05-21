@@ -1,0 +1,27 @@
+server:
+  port: 9006
+
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/chatapp}  # 기본값 포함
+    redis:
+      host: ${REDIS_HOST:localhost}     # REDIS_URL 대신 REDIS_HOST 명명하는 것이 직관적
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD}
+      username: ${REDIS_USERNAME:root}
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.messaging: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
