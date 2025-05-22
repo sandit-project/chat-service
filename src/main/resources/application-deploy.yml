@@ -1,0 +1,27 @@
+server:
+  port: 9006
+
+spring:
+  data:
+    mongodb:
+      uri: ${MONGO_URL}
+    redis:
+      host: ${REDIS_URL}
+      port: ${REDIS_PORT}
+      password: ${REDIS_PASSWORD}
+      username: ${REDIS_USER}
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.messaging: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
