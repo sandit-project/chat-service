@@ -25,7 +25,7 @@ jobs:
 
       - name: Tag Docker image
         run: |
-          docker tag chat-service:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-northeast-2.amazonaws.com/chat-service:latest
+          docker tag chat-service:latest ${{ secrets.DOCKER_HUB_USERNAME }}/chat-service:latest
 
       - name: Push Docker image to Docker Hub
         run: |
