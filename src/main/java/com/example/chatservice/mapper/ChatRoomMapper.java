@@ -16,6 +16,7 @@ public class ChatRoomMapper {
                 room.getName(),
                 room.getCreatedAt(),
                 room.getOwnerId()
+
         );
     }
 
