@@ -43,7 +43,7 @@ jobs:
           kubectl create secret generic chat-service-secrets \
             --from-literal=REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }} \
             --from-literal=REDIS_USER=${{ secrets.REDIS_USER }} \
-            --dry-run=client -o yaml | kubectl apply -f -
+            --dry-run=client -o yaml | kubectl apply --validate=false -f -
 
       - name: Log in to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v2
