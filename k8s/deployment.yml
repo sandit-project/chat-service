@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-service
+spec:
+  selector:
+    matchLabels:
+      app: chat-service
+  template:
+    metadata:
+      labels:
+        app: chat-service
+    spec:
+      nodeSelector:
+        role: websocket
+      containers:
+        - name: chat-service
+          image: 448049828702.dkr.ecr.ap-northeast-2.amazonaws.com/chat-service:latest
+          imagePullPolicy: Always
+          lifecycle:
+            preStop:
+              exec:
+                command: [ "sh", "-c", "sleep 5" ]
+          resources:
+            requests:
+              cpu: "400m"
+              memory: "600Mi"
+            limits:
+              cpu: "700m"
+              memory: "1024Mi"
+          ports:
+            - containerPort: 9006
+          env:
+            - name: MONGO_URL
+              value: mongodb://10.0.1.216:27017/chatapp
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_URL
+              value: "10.0.2.32"
+            - name: SPRING_PROFILES_ACTIVE
+              value: deploy
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: chat-service-secrets
+                  key: REDIS_PASSWORD
+            - name: REDIS_USER
+              valueFrom:
+                secretKeyRef:
+                  name: chat-service-secrets
+                  key: REDIS_USER
