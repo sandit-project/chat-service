@@ -32,11 +32,11 @@ spec:
             - containerPort: 9006
           env:
             - name: MONGO_URL
-              value: mongodb://10.0.1.216:27017/chatapp
+              value: mongodb://$(MONGODB_IP):27017/chatapp
             - name: REDIS_PORT
               value: "6379"
             - name: REDIS_URL
-              value: "10.0.2.32"
+              value: $(REDIS_IP)
             - name: SPRING_PROFILES_ACTIVE
               value: deploy
             - name: REDIS_PASSWORD
