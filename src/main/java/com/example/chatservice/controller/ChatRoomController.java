@@ -42,18 +42,4 @@ public class ChatRoomController {
         chatRoomService.deleteRoom(roomId);
     }
 
-    // 채팅방 읽음 처리 API 추가
-    @PostMapping("/rooms/{roomId}/read")
-    public void markRoomAsRead(@PathVariable String roomId, @RequestParam String userId) {
-        // userId는 쿼리 파라미터로 전달하거나, 인증 정보에서 가져올 수 있음
-        chatRoomService.markRoomAsRead(roomId, userId);
-    }
-
-    // 채팅방 읽음 상태 조회 API 추가
-    @GetMapping("/rooms/{roomId}/read")
-    public Boolean isRoomReadByUser(@PathVariable String roomId, @RequestParam String userId) {
-        // chatRoomService에 읽음 상태를 조회하는 메서드 필요
-        return chatRoomService.isRoomReadByUser(roomId, userId);
-    }
-
 }
