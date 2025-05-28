@@ -12,8 +12,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic"); // 메시지 발행 경로
+        config.enableSimpleBroker("/topic", "/queue"); // 메시지 발행 경로
         config.setApplicationDestinationPrefixes("/app"); // 메시지 수신 경로
+        config.setUserDestinationPrefix("/user");      // 개인 메시지 prefix
     }
 
     @Override
