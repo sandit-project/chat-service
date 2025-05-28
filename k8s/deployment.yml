@@ -15,7 +15,7 @@ spec:
         role: websocket
       containers:
         - name: chat-service
-          image: 448049828702.dkr.ecr.ap-northeast-2.amazonaws.com/chat-service:latest
+          image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/chat-service:latest
           imagePullPolicy: Always
           lifecycle:
             preStop:
@@ -32,11 +32,11 @@ spec:
             - containerPort: 9006
           env:
             - name: MONGO_URL
-              value: mongodb://${MONGODB_IP}:27017/chatapp
+              value: mongodb://$MONGODB_IP:27017/chatapp
             - name: REDIS_PORT
               value: "6379"
             - name: REDIS_URL
-              value: ${REDIS_IP}
+              value: $REDIS_IP
             - name: SPRING_PROFILES_ACTIVE
               value: deploy
             - name: REDIS_PASSWORD
