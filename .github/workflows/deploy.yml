@@ -71,6 +71,7 @@ jobs:
             --from-literal=REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }} \
             --from-literal=REDIS_USER=${{ secrets.REDIS_USER }} \
             --from-literal=AWS_ACCOUNT_ID=${{ secrets.AWS_ACCOUNT_ID }} \
+            --from-literal=AWS_CERTIFICATE_WS=${{ secrets.AWS_CERTIFICATE_WS }} \
             --dry-run=client -o yaml | kubectl apply --validate=false -f -
 
       - name: Log in to Amazon ECR
