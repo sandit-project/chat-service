@@ -16,8 +16,8 @@ spec:
     - name: http
       protocol: TCP
       port: 80
-      targetPort: 9000
+      targetPort: 9006
     - name: https
       protocol: TCP
       port: 443
-      targetPort: 9000
+      targetPort: 9006
