@@ -20,12 +20,12 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/chat") // 웹소켓 연결 엔드포인트
-                .setAllowedOrigins("https://himedia-a.com", "http://himedia-a.com", "http://ws.himedia-a.com", "https://ws.himedia-a.com")
+                .setAllowedOriginPatterns("https://himedia-a.com", "https://ws.himedia-a.com")
                 .withSockJS(); // SockJS fallback
 
         // 배달 위치용
         registry.addEndpoint("/delivery-location")
-                .setAllowedOrigins("https://himedia-a.com", "http://himedia-a.com", "http://ws.himedia-a.com", "https://ws.himedia-a.com")
+                .setAllowedOriginPatterns("https://himedia-a.com", "https://ws.himedia-a.com")
                 .withSockJS();
     }
 }
