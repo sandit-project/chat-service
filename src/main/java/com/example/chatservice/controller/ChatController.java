@@ -3,6 +3,7 @@ package com.example.chatservice.controller;
 import com.example.chatservice.domain.ChatMessage;
 import com.example.chatservice.dto.ChatMessageRequestDTO;
 import com.example.chatservice.dto.ChatMessageResponseDTO;
+import com.example.chatservice.dto.ChatNotificationDTO;
 import com.example.chatservice.mapper.ChatMessageMapper;
 import com.example.chatservice.repository.ChatMessageRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,5 +30,7 @@ public class ChatController {
         ChatMessageResponseDTO response = ChatMessageMapper.toResponse(message);
 
         messagingTemplate.convertAndSend("/topic/room/" + message.getRoomId(), response);
+
+        messagingTemplate.convertAndSend("/topic/chat/notify", new ChatNotificationDTO(message.getRoomId()));
     }
 }

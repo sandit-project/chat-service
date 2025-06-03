@@ -1,11 +1,13 @@
 package com.example.chatservice.controller;
 
+import com.example.chatservice.domain.ChatRoom;
 import com.example.chatservice.dto.ChatMessageResponseDTO;
 import com.example.chatservice.dto.ChatRoomRequestDTO;
 import com.example.chatservice.dto.ChatRoomResponseDTO;
 import com.example.chatservice.service.ChatRoomService;
 import com.example.chatservice.service.ChatMessageService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +22,9 @@ public class ChatRoomController {
 
     // 채팅방 생성 API
     @PostMapping("/rooms")
-    public ChatRoomResponseDTO createRoom(@RequestBody ChatRoomRequestDTO request) {
-        return chatRoomService.createRoom(request.getName(), request.getOwnerId());
+    public ResponseEntity<ChatRoomResponseDTO> createRoom(@RequestBody ChatRoomRequestDTO request) {
+        ChatRoomResponseDTO room= chatRoomService.createRoom(request.getName(), request.getOwnerId());
+        return ResponseEntity.ok(room);
     }
 
     // 채팅방 목록 조회 API
